@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_URL:localhost:5432/bank}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:314331}
+  graphql:
+    graphiql:
+      enabled: true
+      path: /graphiql
+  jpa:
+    database: postgresql
+
+  liquibase:
+    changeLog: classpath:/db/changelog/db.changelog-master.xml
+    url: ${spring.datasource.url}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+#    drop-first: true
+
+server:
+  port: 8081
