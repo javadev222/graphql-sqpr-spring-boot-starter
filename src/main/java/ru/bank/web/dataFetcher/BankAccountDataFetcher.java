@@ -6,6 +6,7 @@ import io.leangen.graphql.annotations.GraphQLNonNull;
 import io.leangen.graphql.annotations.GraphQLQuery;
 import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import ru.bank.business.service.BankAccountService;
 import ru.bank.web.dto.BankAccountDto;
@@ -20,8 +21,8 @@ public class BankAccountDataFetcher {
     private final BankAccountService service;
 
     @GraphQLQuery(name = "getAllBalance")
-    public List<BankAccountDto> getAll() {
-        return service.getAll();
+    public List<BankAccountDto> getAll(@GraphQLArgument(name = "page")Pageable pageable) {
+        return service.getAll(pageable);
     }
 
     @GraphQLMutation(name = "createBankAccount", description = "create a new bank account")

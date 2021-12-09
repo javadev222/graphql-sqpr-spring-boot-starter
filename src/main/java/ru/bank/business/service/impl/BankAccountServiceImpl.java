@@ -2,6 +2,7 @@ package ru.bank.business.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.bank.business.dao.BankAccountRepository;
 import ru.bank.business.entity.BankAccountEntity;
@@ -37,8 +38,8 @@ public class BankAccountServiceImpl implements BankAccountService {
     }
 
     @Override
-    public List<BankAccountDto> getAll() {
-        return bankAccountMapper.toDtos(repository.findAll());
+    public List<BankAccountDto> getAll(Pageable pageable) {
+        return bankAccountMapper.toDtos(repository.findAll(pageable).toList());
     }
 
     private BankAccountEntity getById(String id) {

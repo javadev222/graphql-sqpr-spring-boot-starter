@@ -1,5 +1,6 @@
 package ru.bank.business.service;
 
+import org.springframework.data.domain.Pageable;
 import ru.bank.web.dto.BankAccountDto;
 import ru.bank.web.dto.DispatchMoneyDto;
 
@@ -12,7 +13,7 @@ public interface BankAccountService {
     @Transactional
     void remove (String numberAccount);
 
-    List<BankAccountDto> getAll();
+    List<BankAccountDto> getAll(Pageable pageable);
 
     void dispatchMoney(DispatchMoneyDto dispatchMoneyDto);
 }
